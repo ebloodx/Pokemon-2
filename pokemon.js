@@ -74,8 +74,10 @@ function main() {
     const trainer = new NPC("Ash", "Trainer");
     const shopkeeper = new NPC("Mart Owner", "Shopkeeper");
 
-    console.log(`A wild ${wild.name} appeared!`);
-    console.log("Choose action: (1) Battle (2) Catch (3) Visit Trainer (4) Visit Shop");
+    const texts = document.getElementById("text");
+    const optionss = document.getElementById("options");
+    texts += `A wild ${wild.name} appeared!`;
+    optionss += "Choose action: (1) Battle (2) Catch (3) Visit Trainer (4) Visit Shop";
     
     const choice = parseInt(prompt("Enter your choice:"));
 
@@ -98,6 +100,4 @@ function main() {
         console.log("Invalid choice!");
     }
 }
-
-main();
 
