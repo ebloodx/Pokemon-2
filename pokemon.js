@@ -67,7 +67,6 @@ class NPC {
     }
 }
 
-// Main Game Loop
 function main() {
     const player = new Player();
     const wild = new Monster("Bulbasaur", "Grass", 90, 18, 10, 1);
@@ -76,10 +75,10 @@ function main() {
 
     const texts = document.getElementById("text");
     const optionss = document.getElementById("options");
-    texts += `A wild ${wild.name} appeared!`;
-    optionss += "Choose action: (1) Battle (2) Catch (3) Visit Trainer (4) Visit Shop";
+    texts.innerText += `A wild ${wild.name} appeared!`;
+    optionss.innerText += "Choose action: (1) Battle (2) Catch (3) Visit Trainer (4) Visit Shop";
     
-    const choice = parseInt(prompt("Enter your choice:"));
+    const choice = document.getElementById("choice");
 
     if (choice === 1) {
         const hero = new Monster("Charmander", "Fire", 100, 20, 8, 1);
