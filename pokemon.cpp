@@ -4,7 +4,8 @@
 #include <ctime>
 
 // Monster Class
-class Monster {
+class Monster
+{
 public:
     std::string name, type;
     int health, attackPower, defense, level;
@@ -12,14 +13,16 @@ public:
     Monster(std::string n, std::string t, int h, int a, int d, int l)
         : name(n), type(t), health(h), attackPower(a), defense(d), level(l) {}
 
-    void attack(Monster &opponent) {
+    void attack(Monster &opponent)
+    {
         int damage = (rand() % attackPower + 5) - (opponent.defense / 2);
         damage = (damage < 0) ? 1 : damage;
         opponent.health -= damage;
         std::cout << name << " attacks " << opponent.name << " for " << damage << " damage!\n";
     }
 
-    void heal() {
+    void heal()
+    {
         int healAmount = rand() % 15 + 5;
         health += healAmount;
         std::cout << name << " heals for " << healAmount << " HP!\n";
@@ -27,54 +30,69 @@ public:
 
     bool isDefeated() { return health <= 0; }
 
-    void displayStats() {
+    void displayStats()
+    {
         std::cout << name << " [Type: " << type << ", HP: " << health << ", Level: " << level << "]\n";
     }
 };
 
 // Player Class
-class Player {
+class Player
+{
 public:
     std::vector<Monster> team;
     int potions;
 
     Player() : potions(3) {}
 
-    void catchMonster(Monster m) {
+    void catchMonster(Monster m)
+    {
         team.push_back(m);
         std::cout << "You caught a wild " << m.name << "!\n";
     }
 
-    void usePotion(Monster &m) {
-        if (potions > 0) {
+    void usePotion(Monster &m)
+    {
+        if (potions > 0)
+        {
             m.heal();
             potions--;
-        } else {
+        }
+        else
+        {
             std::cout << "No potions left!\n";
         }
     }
 };
 
 // NPC Class
-class NPC {
+class NPC
+{
 public:
     std::string name, role;
 
     NPC(std::string n, std::string r) : name(n), role(r) {}
 
-    void interact() {
-        if (role == "Shopkeeper") {
+    void interact()
+    {
+        if (role == "Shopkeeper")
+        {
             std::cout << name << ": 'Welcome! Would you like to buy potions?'\n";
-        } else if (role == "Trainer") {
+        }
+        else if (role == "Trainer")
+        {
             std::cout << name << ": 'Let's battle!'\n";
-        } else {
+        }
+        else
+        {
             std::cout << name << ": 'Hello traveler!'\n";
         }
     }
 };
 
 // Main Game Loop
-int main() {
+int main()
+{
     srand(time(0));
 
     Player player;
@@ -87,22 +105,33 @@ int main() {
     int choice;
     std::cin >> choice;
 
-    if (choice == 1) {
+    if (choice == 1)
+    {
         Monster hero("Charmander", "Fire", 100, 20, 8, 1);
-        while (!hero.isDefeated() && !wild.isDefeated()) {
+        while (!hero.isDefeated() && !wild.isDefeated())
+        {
             hero.attack(wild);
-            if (!wild.isDefeated()) {
+            if (!wild.isDefeated())
+            {
                 wild.attack(hero);
             }
         }
         std::cout << (hero.isDefeated() ? "You lost!" : "You won!") << std::endl;
-    } else if (choice == 2) {
+    }
+    else if (choice == 2)
+    {
         player.catchMonster(wild);
-    } else if (choice == 3) {
+    }
+    else if (choice == 3)
+    {
         trainer.interact();
-    } else if (choice == 4) {
+    }
+    else if (choice == 4)
+    {
         shopkeeper.interact();
-    } else {
+    }
+    else
+    {
         std::cout << "Invalid choice!\n";
     }
 
